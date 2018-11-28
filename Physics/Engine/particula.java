@@ -5,21 +5,26 @@ import Physics.Engine.R2_2D;
 import java.awt.*;
 
 public class particula {//se debe de volver abstracta, no debe de haber nada static
-    private double posX;//posicion relativa al origen, metros
-    private double posY;//posicion relativa al origen, metros
-    private double velX=0;//velocidad, metros/s
-    private double velY=0;//velocidad, metros/s
-    private double accX=0;//aceleracion, m/s^2
-    private double accY=0;//aceleracion, m/s^2
-    private double forX=0;//fuerza, N
-    private double forY=0;//fuerza, N
+	
+//    private double posX;//posicion relativa al origen, metros
+//    private double posY;//posicion relativa al origen, metros
+//    private double velX=0;//velocidad, metros/s
+//    private double velY=0;//velocidad, metros/s
+//    private double accX=0;//aceleracion, m/s^2
+//    private double accY=0;//aceleracion, m/s^2
+//    private double forX=0;//fuerza, N
+//    private double forY=0;//fuerza, N
+	private Vector pos = new Vector();
+	private Vector vel = new Vector();
+	private Vector acc = new Vector();
+	private Vector forc= new Vector();
     private double masa=0;//masa candidata a ser final, kg
     private Color color = new Color(80, 80, 200);
 
 
     public particula(){
-        posX = R2_2D.getxOrigin();
-        posY = R2_2D.getyOrigin();
+        pos.setX(R2_2D.getxOrigin());
+        pos.setY(R2_2D.getyOrigin());
     }
 
     public particula(double masa){
@@ -29,14 +34,14 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
 
     public particula(double posX, double posY, double masa){
         this(masa);
-        this.posX=posX;
-        this.posY=posY;
+        this.pos.setX(posX);
+        this.pos.setY(posY);;
     }
 
     public void update(int time){//funcion actualizar particula
         //a=F/m
-        this.accX=this.forX/this.masa;
-        this.accY=(this.forY/this.masa)-(9.81);//considerar gravedad como negativa, para abajo
+        this.acc.setX(this.forc.getX()/this.masa);
+        this.acc.setY((this.forc.getY()/this.masa)-(9.81));//considerar gravedad como negativa, para abajo
         /*
         Y+
         ^
@@ -47,17 +52,17 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
          */
 
         //velocidad
-        this.velX+=(this.accX*time/1000_000);
-        this.velY+=(this.accY*time/1000_000);
+        this.acc.setX(this.acc.getX()*time/1000_000);
+        this.acc.setY(this.acc.getY()*time/1000_000);
 
         //posicion
-        this.posX+=(this.velX*time/1000_000);
-        this.posY+=(this.velY*time/1000_000);
+        this.pos.setX(this.vel.getX()*time/1000_000);
+        this.pos.setY(this.vel.getY()*time/1000_000);
     }
 
     public void move(char r_a, double despX, double despY){//movimiento relativo o absoluto
-        posX=(r_a=='r')?posX+despX:despX;
-        posY=(r_a=='r')?posY+despY:despY;
+    	this.pos.setX((r_a=='r')?this.pos.getX()+despX:despX);
+    	this.pos.setY((r_a=='r')?this.pos.getY()+despX:despX);
     }
 
     public void sumForX(double forX){
@@ -74,11 +79,11 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
     }
 
     public double getPosX(){
-        return posX;
+        return this.pos.getX();
     }
 
     public double getPosY(){
-        return posY;
+        return this.pos.getY();
     }
 
     public double getMasa(){
@@ -86,43 +91,43 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
     }
 
     public double getVelX(){
-        return velX;
+        return this.vel.getX();
     }
 
     public double getAccX(){
-        return accX;
+        return this.acc.getX();
     }
 
     public double getForX(){
-        return forX;
+        return this.forc.getX();
     }
 
     public void setVelX(double velX){//fuerza el cambio
-        this.velX=velX;
+        this.vel.setX(velX);
     }
 
     public void setAccX(double accX){//fuerza cambio
-        this.accX=accX;
+        this.acc.setX(accX);
     }
 
     public void setForX(double forX){//fuerza cambio
-        this.forX=forX;
+        this.forc.setX(forX);
     }
 
     public double getVelY(){
-        return velY;
+        return this.vel.getY();
     }
 
     public double getAccY(){
-        return accY;
+        return this.acc.getY();
     }
 
     public double getForY(){
-        return forY;
+        return this.forc.getY();
     }
 
     public void setVelY(double velY){//fuerza el cambio
-        this.velY=velY;
+        this.vel.setY(velY);
     }
 
     public void setVel(double mag, double dir){
@@ -131,11 +136,11 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
     }
 
     public void setAccY(double accY){//fuerza cambio
-        this.accY=accY;
+        this.acc.setY(accY);
     }
 
     public void setForY(double forY) {//fuerza cambio
-        this.forY = forY;
+        this.forc.setY(forY);
     }
 
     public void setMasa(double masa){
@@ -158,7 +163,7 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
 
     @Override
     public String toString(){
-        return String.format("Posicion: (%.2f, %.2f)\nVelocidad: (%.2f, %.2f)\nAceleracion: (%.2f, %.2f)\nFuerza: (%.2f, %.2f)\nMasa: %.2f",posX,posY,velX,velY,accX,accY,forX,forY,masa);
+        return String.format("Posicion: (%.2f, %.2f)\nVelocidad: (%.2f, %.2f)\nAceleracion: (%.2f, %.2f)\nFuerza: (%.2f, %.2f)\nMasa: %.2f",pos.getX(),pos.getY(),vel.getX(),vel.getY(),acc.getX(),acc.getY(),forc.getX(),forc.getY(),masa);
     }
 
     public static void main(String[] args){
