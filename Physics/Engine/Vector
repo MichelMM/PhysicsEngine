@@ -5,6 +5,7 @@ public class Vector {
 	private double x;
 	private double y;
 	
+	
 	public Vector() {
 		this(0, 0);
 	}
@@ -53,12 +54,18 @@ public class Vector {
 	}
 	
 	public double magnitude() {
-		return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.x, 2));
+		return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
 	}
 	
 	public void unitarioV() {
-		this.setX(this.x / this.magnitude());
-		this.setY(this.y / this.magnitude());
+		double mag = this.magnitude();
+		this.setX(this.x / mag);
+		this.setY(this.y / mag);
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("%f i , %f j", this.x, this.y);
 	}
 	
 }
