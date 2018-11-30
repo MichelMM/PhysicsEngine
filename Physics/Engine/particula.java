@@ -52,12 +52,12 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
          */
 
         //velocidad
-        this.acc.setX(this.acc.getX()*time/1000_000);
-        this.acc.setY(this.acc.getY()*time/1000_000);
+        this.vel.setX(this.vel.getX()+this.acc.getX()*time/1000_000);
+        this.vel.setY(this.vel.getY()+this.acc.getY()*time/1000_000);
 
         //posicion
-        this.pos.setX(this.vel.getX()*time/1000_000);
-        this.pos.setY(this.vel.getY()*time/1000_000);
+        this.pos.setX(this.pos.getX()+this.vel.getX()*time/1000_000);
+        this.pos.setY(this.pos.getY()+this.vel.getY()*time/1000_000);
     }
 
     public void move(char r_a, double despX, double despY){//movimiento relativo o absoluto
@@ -85,6 +85,10 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
     public double getPosY(){
         return this.pos.getY();
     }
+    
+    public Vector getPos() {
+    	return new Vector(this.getPosX(),this.getPosY());
+    }
 
     public double getMasa(){
         return masa;
@@ -93,13 +97,30 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
     public double getVelX(){
         return this.vel.getX();
     }
+    
+    public double getVelY(){
+        return this.vel.getY();
+    }
+    
+    public Vector getVel() {
+    	return new Vector(this.getVelX(),this.getVelY());
+    }
 
     public double getAccX(){
         return this.acc.getX();
     }
+    
+    public double getAccY(){
+        return this.acc.getY();
+    }
+
 
     public double getForX(){
         return this.forc.getX();
+    }
+    
+    public double getForY(){
+        return this.forc.getY();
     }
 
     public void setVelX(double velX){//fuerza el cambio
@@ -112,18 +133,6 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
 
     public void setForX(double forX){//fuerza cambio
         this.forc.setX(forX);
-    }
-
-    public double getVelY(){
-        return this.vel.getY();
-    }
-
-    public double getAccY(){
-        return this.acc.getY();
-    }
-
-    public double getForY(){
-        return this.forc.getY();
     }
 
     public void setVelY(double velY){//fuerza el cambio
