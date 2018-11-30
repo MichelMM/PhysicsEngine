@@ -53,9 +53,10 @@ public class TestDibujo extends JFrame {
 //		Crear/mostrar la ventana.
         TestDibujo n=new TestDibujo();
 
-        n.lienzo.carro.setVel(20,70);
+        n.lienzo.carro.setVel(20,45);
         n.lienzo.carro.setColor(200,10,10);
         n.lienzo.carro2.setVel(20,130);
+        n.lienzo.carro3.setVel(20, 90);
 
         n.lienzo.v_sim=1;
 
