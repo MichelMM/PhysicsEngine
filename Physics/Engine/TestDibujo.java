@@ -27,10 +27,10 @@ public class TestDibujo extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 //		Que no se permita el cambio de tamaño de la ventana
-//		setResizable(false);
+		setResizable(false);
 
 //		Quitarle los bordes a la ventana
-//		setUndecorated(true);
+		setUndecorated(true);
 
 //		Accedemos al contenedor principal de la ventana (para pintar sobre él)
         Container c = getContentPane();
@@ -53,18 +53,20 @@ public class TestDibujo extends JFrame {
 //		Crear/mostrar la ventana.
         TestDibujo n=new TestDibujo();
 
+        /*estaría bien crear los objetos aqui y pasarlos al lienzo*/
         n.lienzo.carro.setVel(20,45);
         n.lienzo.carro.setColor(200,10,10);
-        n.lienzo.carro2.setVel(20,130);
+        n.lienzo.carro2.setVel(20,135);
         n.lienzo.carro3.setVel(20, 90);
 
         n.lienzo.v_sim=1;
+        test1.zoom=5;
 
-        int tiempo = (3_800_000/8333);
+        int tiempo = (10_000_000/8333);//ultima parte son segundos
         particula.busyWaitMicros(150_000);//Esperar a que cargue
-         for(int i=0;i<tiempo;i=i+n.lienzo.v_sim){
+        for(int i=0;i<tiempo;i=i+n.lienzo.v_sim){
             particula.busyWaitMicros(8333);//velocidad de simulacion tiempo real es 100 arriba de 1500 es aceptable, en 2500 ya es estable
-             n.lienzo.repaint();
+            n.lienzo.repaint();
         }
         System.out.println(n.lienzo.carro);
 
