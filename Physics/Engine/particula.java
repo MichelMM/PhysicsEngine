@@ -5,8 +5,8 @@ import Physics.Engine.R2_2D;
 import java.awt.*;
 
 public class particula {//se debe de volver abstracta, no debe de haber nada static
-	
-//    private double posX;//posicion relativa al origen, metros
+
+    //    private double posX;//posicion relativa al origen, metros
 //    private double posY;//posicion relativa al origen, metros
 //    private double velX=0;//velocidad, metros/s
 //    private double velY=0;//velocidad, metros/s
@@ -14,10 +14,10 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
 //    private double accY=0;//aceleracion, m/s^2
 //    private double forX=0;//fuerza, N
 //    private double forY=0;//fuerza, N
-	private Vector pos = new Vector();
-	private Vector vel = new Vector();
-	private Vector acc = new Vector();
-	private Vector forc= new Vector();
+    private Vector pos = new Vector();
+    private Vector vel = new Vector();
+    private Vector acc = new Vector();
+    private Vector forc= new Vector();
     private double masa=0;//masa candidata a ser final, kg
     private Color color = new Color(80, 80, 200);
 
@@ -61,8 +61,8 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
     }
 
     public void move(char r_a, double despX, double despY){//movimiento relativo o absoluto
-    	this.pos.setX((r_a=='r')?this.pos.getX()+despX:despX);
-    	this.pos.setY((r_a=='r')?this.pos.getY()+despX:despX);
+        this.pos.setX((r_a=='r')?this.pos.getX()+despX:despX);
+        this.pos.setY((r_a=='r')?this.pos.getY()+despX:despX);
     }
 
     public void sumForX(double forX){
@@ -85,9 +85,9 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
     public double getPosY(){
         return this.pos.getY();
     }
-    
+
     public Vector getPos() {
-    	return new Vector(this.getPosX(),this.getPosY());
+        return new Vector(this.getPosX(),this.getPosY());
     }
 
     public double getMasa(){
@@ -97,19 +97,19 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
     public double getVelX(){
         return this.vel.getX();
     }
-    
+
     public double getVelY(){
         return this.vel.getY();
     }
-    
+
     public Vector getVel() {
-    	return new Vector(this.getVelX(),this.getVelY());
+        return new Vector(this.getVelX(),this.getVelY());
     }
 
     public double getAccX(){
         return this.acc.getX();
     }
-    
+
     public double getAccY(){
         return this.acc.getY();
     }
@@ -118,7 +118,7 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
     public double getForX(){
         return this.forc.getX();
     }
-    
+
     public double getForY(){
         return this.forc.getY();
     }
