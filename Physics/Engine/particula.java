@@ -35,7 +35,7 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
     public particula(double posX, double posY, double masa){
         this(masa);
         this.pos.setX(posX);
-        this.pos.setY(posY);;
+        this.pos.setY(posY);
     }
 
     public void update(int time){//funcion actualizar particula
@@ -175,7 +175,7 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
         return String.format("Posicion: (%.2f, %.2f)\nVelocidad: (%.2f, %.2f)\nAceleracion: (%.2f, %.2f)\nFuerza: (%.2f, %.2f)\nMasa: %.2f",pos.getX(),pos.getY(),vel.getX(),vel.getY(),acc.getX(),acc.getY(),forc.getX(),forc.getY(),masa);
     }
 
-    public static void main(String[] args){
+    /*public static void main(String[] args){
         particula carro = new particula(1500);
         //carro.sumForX(14715);
         //carro.setVelY(20);
@@ -187,5 +187,5 @@ public class particula {//se debe de volver abstracta, no debe de haber nada sta
         }
         System.out.println(carro);
         System.out.println(System.nanoTime());
-    }
+    }*/
 }
